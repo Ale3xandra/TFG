@@ -6,3 +6,5 @@ Crear un Deployment
 Crear un Service
 
 El deployment crea los diferentes pods que componen la aplicación. El service los agrupa de manera funcional y los expone para que sean accesibles desde el exterior del clúster.
+
+https://onthedock.github.io/post/170716-mi-primera-app-en-kubernetes/
