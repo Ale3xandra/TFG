@@ -4,7 +4,7 @@ metadata:
   labels:
     name: prometheus-deployment
   name: prometheus
-  namespace: monitoring
+  namespace: kube-prometheus
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
         app: prometheus
     spec:
       containers:
-      - image: prom/prometheus:v2.0.0
+      - image: prom/prometheus:v2.3.2
         name: prometheus
         command:
         - "/bin/prometheus"
@@ -45,4 +45,4 @@ spec:
         emptyDir: {}
       - name: config-volume
         configMap:
-          name: prometheus-config   
+          name: prometheus-config
