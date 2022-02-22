@@ -1,6 +1,6 @@
 
 #1. antes de nada creamos el namespace sobre el que vamos a trabajar
-kubectl create -f prometeo-ns.yaml
+kubectl apply -f prometeo-ns.yaml
 
 #2. asignamos permisos a prometheus para que acceda al contenedor de kubernetes
 kubectl apply -f prometheus-rbac.yaml 
