@@ -7,3 +7,15 @@ controller:
   service:
     externalTrafficPolicy: Local
 
+# # -- Configures the ports that the nginx-controller listens on
+# containerPort:
+#     http: 8080
+#     https: 443
+
+# controller:
+#   metrics:
+#     enabled: true
+#     service:
+#       annotations:
+#         prometheus.io/port: "10254"
+#         prometheus.io/scrape: "true" 
