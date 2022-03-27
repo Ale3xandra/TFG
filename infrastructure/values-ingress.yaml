@@ -3,6 +3,13 @@
 
 #helm upgrade --install nginx ingress-nginx/ingress-nginx -n infrastructure --create-namespace -f values-ingress.yaml
 
+#helm list -n infrastructure
+#to uninstall:  helm uninstall nginx -n infrastructure
+---
+#helm upgrade --install ingress-nginx ingress-nginx \
+#  --repo https://kubernetes.github.io/ingress-nginx \
+#  --namespace ingress-nginx --create-namespace
+---
 controller:
   service:
     externalTrafficPolicy: Local
