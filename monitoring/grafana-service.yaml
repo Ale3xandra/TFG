@@ -1,0 +1,29 @@
+#http://<your-node-ip>:32000
+#Now you should be able to access the Grafana dashboard using any node IP on port 32000. Make sure the port is allowed in the firewall to be accessed from your workstation.
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: monitoring
+  annotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port:   '3000'
+spec:
+  selector: 
+    app: grafana
+  type: NodePort  
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 32000
+
+##para declararlo como un clusterIP
+# spec:
+#   selector: 
+#     app: grafana-server
+#   type: ClusterIP  
+#   ports:
+#     - port: 80
+#       targetPort: 3000 
+#       protocol: TCP
+#       name: http
