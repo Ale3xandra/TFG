@@ -7,7 +7,11 @@ metadata:
   name: prometheus-ingress
   namespace: monitoring
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: "nginx"
+    #nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    kubernetes.io/tls-acme: "true"
 spec:
   rules:
   # Use the host you used in your kubernetes Ingress Configurations
@@ -21,10 +25,10 @@ spec:
               number: 80
         path: /
         pathType: Prefix
-#   tls:
-#   - hosts: 
-#     - prometheus.example.com
-#     secretName: prometheus-secret
+  tls:
+  - hosts: 
+    - prometheus.demo.com
+    secretName: letsencrypt-prod
 # ---
 # apiVersion: v1 
 # kind: Secret 

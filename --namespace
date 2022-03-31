@@ -1,0 +1,3 @@
+para borrar todo de un namespace 
+
+kubectl delete all --all -n namespace
