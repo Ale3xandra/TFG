@@ -1,0 +1,62 @@
+kind: Service
+apiVersion: v1
+metadata:
+ name: game-tetris
+ namespace: games
+ labels:
+   app: 'tetris'
+spec:
+ selector:
+   app: 'tetris'
+ ports:
+ - name: http
+   port: 80
+   targetPort: 80
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+ name: game-tetris
+ namespace: games
+ labels:
+   app: 'tetris'
+spec:
+ selector:
+   matchLabels:
+     app: 'tetris'
+ replicas: 1
+ template:
+   metadata:
+     labels:
+       app: 'tetris'
+   spec:
+     containers:
+     - name: 'tetris'
+       image: lrakai/tetris:hostname
+       imagePullPolicy: Always
+       resources:
+         requests:
+           memory: 128Mi
+           cpu: "100m"
+         limits:
+           memory: 256Mi
+           cpu: "200m"
+       ports:
+       - name: http
+         containerPort: 80
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+ labels:
+   app: 'tetris'
+ name: game-tetris
+ namespace: games
+spec:
+ maxReplicas: 5
+ minReplicas: 1
+ scaleTargetRef:
+   apiVersion: apps/v1
+   kind: Deployment
+   name: game-tetris
+ targetCPUUtilizationPercentage: 80
