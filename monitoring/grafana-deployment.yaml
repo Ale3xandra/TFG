@@ -37,8 +37,47 @@ spec:
             readOnly: false
       volumes:
         - name: grafana-storage
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: grafana-storage-pvc
         - name: grafana-datasources
           configMap:
               defaultMode: 420
               name: grafana-datasources
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-storage-pvc
+  namespace: monitoring
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+
+#Note: The following data source configuration is for Prometheus. If you have more data sources, 
+#you can add more data sources with different YAMLs under the data section.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources
+  namespace: monitoring
+data:
+  prometheus.yaml: |-
+    {
+        "apiVersion": 1,
+        "datasources": [
+            {
+               "access":"proxy",
+                "editable": true,
+                "name": "prometheus",
+                "orgId": 1,
+                "type": "prometheus",
+                "url": "http://prometheus-service.monitoring.svc:80",
+                "version": 1
+            }
+        ]
+    }
