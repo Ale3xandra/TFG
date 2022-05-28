@@ -27,3 +27,10 @@ image.png
 3. instalamos Wordpress con MySQL
 
 
+---
+---
+---
+
+para entrar en un pod, me ha funcionado el siguiente comando
+
+$ kubectl exec -it game-2048-759887ff89-m2dfx -n games -- sh

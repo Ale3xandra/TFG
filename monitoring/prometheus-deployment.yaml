@@ -35,4 +35,20 @@ spec:
             name: prometheus-server-conf
   
         - name: prometheus-storage-volume
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: prometheus-storage-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-storage-pvc
+  namespace: monitoring
+  labels:
+    app: prometheus
+spec:
+ accessModes:
+   - ReadWriteOnce
+ resources:
+   requests:
+      storage: 2Gi
+---

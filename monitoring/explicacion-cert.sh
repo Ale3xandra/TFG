@@ -27,6 +27,9 @@ kubectl get secret prometheus-cert-tls -n monitoring -o jsonpath="{.data.tls\.ke
 y para generar el .p12
 openssl pkcs12 -export -out server-prometheus.p12 -inkey tls.key -in tls.crt -certfile ca.crt
 
+
+openssl pkcs12 -export -out server-prometheus.p12 -inkey pro-tls.key -in pro-tls.crt -certfile pro-ca.crt
+openssl pkcs12 -export -out server-grafana.p12 -inkey gra-tls.key -in gra-tls.crt -certfile gra-ca.crt
 ---
 
 pra cuando si tenemos un dns, podemos generar un issuer con lets encrypt
