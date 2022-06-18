@@ -55,5 +55,5 @@ spec:
     - name: influxdb
       port: 80
       targetPort: 8086
-      nodePort: 31000
+      nodePort: 32086
     
