@@ -81,3 +81,27 @@ data:
             }
         ]
     }
+  influxdb.yaml: |-
+    {
+        "apiVersion": 1,
+        "datasources": [
+            {
+               "access":"proxy",
+                "editable": true,
+                "name": "InfluxDB_v2_Flux",
+                "orgId": 1,
+                "type": "influxdb",
+                "url": "http://10.109.144.19:8086",
+                "version": 2,
+                "withCredentials": "true",
+                jsonData: {
+                  "defaultBucket": "telegraf",
+                  "organization": "InfluxData",
+                  "version": "Flux"
+                },
+                secureJsonData: {
+                  "token": "JW_gnA6FMgd7v9f-1pE__JN1OSIoC4p6aQ50qxBX9fJSVWnonoCORjOsbDJWZXHz3rivk3d0sO3Q2nLLmq2VTA=="
+                }
+            }
+        ]
+    }

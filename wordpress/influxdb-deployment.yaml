@@ -34,4 +34,17 @@ spec:
             claimName: influxdb-data
         - name: influxdb-config
           configMap:
+            defaultMode: 420
             name: influxdb-config
+---
+apiVersion: v1  
+kind: PersistentVolumeClaim  
+metadata:  
+  name: influxdb-data 
+  namespace: monitoring 
+spec:  
+  accessModes:  
+  - ReadWriteOnce  
+  resources:  
+    requests:  
+      storage: 2Gi
